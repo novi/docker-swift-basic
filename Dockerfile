@@ -7,7 +7,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
     
 # Install libuv
-RUN git clone https://github.com/libuv/libuv.git && \
+RUN git clone -b v1.8.0 https://github.com/libuv/libuv.git && \
     cd libuv/ && \
     sh autogen.sh && \
     ./configure && \
