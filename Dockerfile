@@ -1,4 +1,4 @@
-FROM swiftdocker/swift:latest
+FROM yusukeito/swift:swift22
 
 # Install dependency library
 RUN apt-get update && \
