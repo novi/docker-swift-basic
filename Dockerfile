@@ -22,6 +22,14 @@ RUN git clone -b v1.9.1 https://github.com/libuv/libuv.git && \
     cd .. && \
     rm -rf libuv
     
-
+# Build libdispatch
+RUN cd && git clone https://github.com/novi/swift-build-utils.git && \
+    cd swift-build-utils/libdispatch && \
+    bash build.sh && \
+    cd dispatch_test && \
+    make test && \
+    cd && rm -rf swift-build-utils && \
+    cd && rm -rf swift-corelibs-libdispatch
     
+
     
