@@ -1,4 +1,4 @@
-FROM swiftdocker/swift:latest
+FROM swiftdocker/swift:20160531-a
 
 # Add MariaDB repository
 RUN apt-get update && \
