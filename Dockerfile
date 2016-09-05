@@ -1,4 +1,4 @@
-FROM yusukeito/swift:snapshot-2016-06-06-a
+FROM yusukeito/swift:snapshot-2016-09-04-a
 
 # Add MariaDB repository
 RUN apt-get update && \
@@ -21,15 +21,4 @@ RUN git clone -b v1.9.1 https://github.com/libuv/libuv.git && \
     make install && \
     cd .. && \
     rm -rf libuv
-    
-# Build libdispatch
-RUN cd && git clone https://github.com/novi/swift-build-utils.git && \
-    cd swift-build-utils/libdispatch && \
-    bash build.sh && \
-    cd dispatch_test && \
-    make test && \
-    cd && rm -rf swift-build-utils && \
-    cd && rm -rf swift-corelibs-libdispatch
-    
-
     
