@@ -8,7 +8,7 @@ RUN apt-get update && \
     
 # Install dependency library
 RUN apt-get update && \
-    apt-get install -y libcurl4-openssl-dev libxml2-dev libmariadbclient-dev git automake libtool autoconf && \
+    apt-get install -y libcurl4-openssl-dev libxml2-dev libmariadbclient-dev git automake libtool autoconf uuid-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
     
