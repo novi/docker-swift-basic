@@ -1,4 +1,4 @@
-FROM yusukeito/swift:snapshot-2016-10-04-a
+FROM yusukeito/swift:snapshot-2016-10-27-a
 
 # Add MariaDB repository
 RUN apt-get update && \
