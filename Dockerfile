@@ -1,4 +1,4 @@
-FROM yusukeito/swift:snapshot-2016-10-27-a
+FROM yusukeito/swift:snapshot-2016-11-15-a
 
 # Add MariaDB repository
 RUN apt-get update && \
@@ -8,7 +8,7 @@ RUN apt-get update && \
     
 # Install dependency library
 RUN apt-get update && \
-    apt-get install -y libcurl4-openssl-dev libxml2-dev libmariadbclient-dev git automake libtool autoconf uuid-dev libssl-dev && \
+    apt-get install -y libxml2-dev libmariadbclient-dev git automake libtool autoconf uuid-dev libssl-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
     
@@ -21,4 +21,15 @@ RUN git clone -b v1.9.1 https://github.com/libuv/libuv.git && \
     make install && \
     cd .. && \
     rm -rf libuv
+    
+# Install grpc
+RUN git clone --depth=50 https://github.com/grpc/grpc.git && \
+    cd grpc/ && \
+    git checkout b6528c59a9a87ae5926ac9e4a11226a4ce490b36 && \
+    git submodule update --init && \
+    make && \
+    make install && \
+    cd .. && \
+    rm -rf grpc
+    
     
