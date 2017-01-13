@@ -23,9 +23,9 @@ RUN git clone -b v1.9.1 https://github.com/libuv/libuv.git && \
     rm -rf libuv
     
 # Install grpc
-RUN git clone --depth=50 https://github.com/grpc/grpc.git && \
+RUN git clone --depth=10 https://github.com/grpc/grpc.git && \
     cd grpc/ && \
-    git checkout b6528c59a9a87ae5926ac9e4a11226a4ce490b36 && \
+    git checkout 6b6954050cf0379dbbee90dd18313a3779e0dd52 && \
     git submodule update --init && \
     make && \
     make install && \
