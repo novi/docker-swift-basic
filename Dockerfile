@@ -12,3 +12,25 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
     
+# install protoc
+RUN apt-get update && apt-get install -y unzip && apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    mkdir -p /tmp/protoc && \
+    wget -O /tmp/protoc/protoc.zip https://github.com/google/protobuf/releases/download/v3.1.0/protoc-3.1.0-linux-x86_64.zip && \
+    cd /tmp/protoc && \
+    unzip protoc.zip && \
+    cp /tmp/protoc/bin/protoc /usr/local/bin && \
+    cp -R /tmp/protoc/include/* /usr/local/include/ && \
+    chmod go+rx /usr/local/bin/protoc && \
+    cd /tmp && \
+    rm -r /tmp/protoc
+
+# Build grpc & protobuf gen
+RUN cd /tmp/ && \
+    git clone -b 0.1.10 https://github.com/grpc/grpc-swift.git && \
+    cd grpc-swift/Plugin && \
+    make && \
+    cp protoc-gen-swift /usr/local/bin && \
+    cp protoc-gen-swiftgrpc /usr/local/bin && \
+    rm -rf /tmp/grpc-swift
+    
