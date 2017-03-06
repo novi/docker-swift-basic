@@ -14,7 +14,7 @@ RUN apt-get update && \
     apt-get install -y libxml2-dev libmariadbclient-dev git automake libtool autoconf uuid-dev libssl-dev libz-dev unzip tzdata && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-    
+
 # Install protoc
 RUN curl -O -L https://github.com/google/protobuf/releases/download/v3.2.0/protoc-3.2.0-linux-x86_64.zip && \
     unzip protoc-3.2.0-linux-x86_64.zip -d /usr && \
@@ -27,3 +27,4 @@ RUN git clone https://github.com/grpc/grpc-swift && \
     cp protoc-gen-swift /usr/bin && \
     cp protoc-gen-swiftgrpc /usr/bin && \
     cd ../.. && rm -rf grpc-swift
+
