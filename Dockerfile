@@ -1,4 +1,4 @@
-FROM yusukeito/swift:swift-3.1-snapshot-2017-06-14-a
+FROM yusukeito/swift:swift4
 
 # Add MariaDB repository
 RUN apt-get update && \
@@ -21,9 +21,8 @@ RUN curl -O -L https://github.com/google/protobuf/releases/download/v3.2.0/proto
     rm protoc-3.2.0-linux-x86_64.zip
 
 # Build and install the swiftgrpc plugin
-RUN git clone https://github.com/grpc/grpc-swift && \
+RUN git clone -b plugin-swift4 https://github.com/novi/grpc-swift && \
     cd grpc-swift/Plugin && \
-    git checkout a8a2c1892b80f961dc2225befccfd1da329a0d4b && \
     make && \
     cp protoc-gen-swift /usr/bin && \
     cp protoc-gen-swiftgrpc /usr/bin && \
