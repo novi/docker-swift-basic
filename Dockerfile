@@ -1,6 +1,6 @@
 FROM yusukeito/swift:swift4
 
-ENV PROTOBUF_VER 3.4.1
+ENV PROTOC_VER 3.4.0
 
 # Add MariaDB repository
 RUN apt-get update && \
@@ -18,9 +18,9 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install protoc
-RUN curl -s -O -L https://github.com/google/protobuf/releases/download/v${PROTOBUF_VER}/protoc-${PROTOBUF_VER}-linux-x86_64.zip && \
-    unzip protoc-${PROTOBUF_VER}-linux-x86_64.zip -d /usr && \
-    rm protoc-${PROTOBUF_VER}-linux-x86_64.zip
+RUN curl -s -O -L https://github.com/google/protobuf/releases/download/v${PROTOC_VER}/protoc-${PROTOC_VER}-linux-x86_64.zip && \
+    unzip protoc-${PROTOC_VER}-linux-x86_64.zip -d /usr && \
+    rm protoc-${PROTOC_VER}-linux-x86_64.zip
 
 # Build and install the swiftgrpc plugin
 RUN git clone -b swift4 https://github.com/novi/grpc-swift && \
