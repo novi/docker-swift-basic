@@ -1,4 +1,4 @@
-FROM yusukeito/swift:swift4
+FROM swift:4
 
 ENV PROTOC_VER 3.4.0
 
@@ -23,7 +23,7 @@ RUN curl -s -O -L https://github.com/google/protobuf/releases/download/v${PROTOC
     rm protoc-${PROTOC_VER}-linux-x86_64.zip
 
 # Build and install the swiftgrpc plugin
-RUN git clone -b swift4 https://github.com/novi/grpc-swift && \
+RUN git clone -b master-alt https://github.com/novi/grpc-swift && \
     cd grpc-swift/Plugin && \
     make && \
     cp protoc-gen-swift /usr/bin && \
