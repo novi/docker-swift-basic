@@ -1,6 +1,6 @@
-FROM swift:4
+FROM swift:4.1
 
-ENV PROTOC_VER 3.4.0
+ENV PROTOC_VER 3.5.1
 
 # Add MariaDB repository
 RUN apt-get update && \
