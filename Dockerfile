@@ -23,10 +23,10 @@ RUN curl -s -O -L https://github.com/google/protobuf/releases/download/v${PROTOC
     rm protoc-${PROTOC_VER}-linux-x86_64.zip
 
 # Build and install the swiftgrpc plugin
-RUN git clone -b master-alt https://github.com/novi/grpc-swift && \
-    cd grpc-swift/Plugin && \
+RUN git clone -b 0.4.0 --depth=1 https://github.com/grpc/grpc-swift && \
+    cd grpc-swift && \
     make && \
     cp protoc-gen-swift /usr/bin && \
     cp protoc-gen-swiftgrpc /usr/bin && \
-    cd ../.. && rm -rf grpc-swift
+    cd ../ && rm -rf grpc-swift
 
