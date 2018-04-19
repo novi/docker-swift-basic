@@ -1,0 +1,15 @@
+version: 2
+jobs:
+  dockerbuild:
+    docker:
+      - image: docker:17.05.0-ce-git
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: docker build .
+
+workflows:
+  version: 2
+  dockerbuild_test:
+    jobs:
+      - dockerbuild
