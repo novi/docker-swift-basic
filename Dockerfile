@@ -1,6 +1,6 @@
-FROM swift:4.1
+FROM swift:4.2
 
-ENV PROTOC_VER 3.5.1
+ENV PROTOC_VER 3.6.1
 
 # Add MariaDB repository
 RUN apt-get update && \
@@ -23,7 +23,7 @@ RUN curl -s -O -L https://github.com/google/protobuf/releases/download/v${PROTOC
     rm protoc-${PROTOC_VER}-linux-x86_64.zip
 
 # Build and install the swiftgrpc plugin
-RUN git clone -b 0.5.0 --depth=1 https://github.com/grpc/grpc-swift && \
+RUN git clone -b 0.5.1 --depth=1 https://github.com/grpc/grpc-swift && \
     cd grpc-swift && \
     make && \
     cp protoc-gen-swift /usr/bin && \
