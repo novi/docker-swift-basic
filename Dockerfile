@@ -1,4 +1,4 @@
-FROM swift:4.2
+FROM norionomura/swift:5020190226a
 
 ENV PROTOC_VER 3.6.1
 
