@@ -1,6 +1,6 @@
-FROM norionomura/swift:5020190304a
+FROM swift:5.0
 
-ENV PROTOC_VER 3.6.1
+ENV PROTOC_VER 3.7.1
 
 # Add MariaDB repository
 RUN apt-get update && \
@@ -13,7 +13,7 @@ RUN ln -fs /usr/share/zoneinfo/Etc/GMT /etc/localtime
 
 # Install dependency library
 RUN apt-get update && \
-    apt-get install -y libxml2-dev libmariadbclient-dev unzip tzdata && \
+    apt-get install -y libxml2-dev libmariadbclient-dev unzip libnghttp2-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
@@ -23,7 +23,7 @@ RUN curl -s -O -L https://github.com/google/protobuf/releases/download/v${PROTOC
     rm protoc-${PROTOC_VER}-linux-x86_64.zip
 
 # Build and install the swiftgrpc plugin
-RUN git clone -b 0.6.0 --depth=1 https://github.com/grpc/grpc-swift && \
+RUN git clone -b 0.8.2 --depth=1 https://github.com/grpc/grpc-swift && \
     cd grpc-swift && \
     make && \
     cp protoc-gen-swift /usr/bin && \
