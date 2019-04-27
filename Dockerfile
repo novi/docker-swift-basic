@@ -1,4 +1,4 @@
-FROM swift:5.0
+FROM yusukeito/swift:swift5.0-dev
 
 ENV PROTOC_VER 3.7.1
 
