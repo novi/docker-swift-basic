@@ -7,7 +7,7 @@ RUN ln -fs /usr/share/zoneinfo/Etc/GMT /etc/localtime
 
 # Install dependency library
 RUN apt-get update && \
-    apt-get install -y libxml2-dev libmysqlclient-dev unzip libnghttp2-dev && \
+    apt-get install -y libxml2-dev libmysqlclient-dev unzip libnghttp2-dev curl && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
