@@ -1,9 +1,9 @@
-FROM swift:5.0
+FROM swift:5.1
 
-ENV PROTOC_VER 3.7.1
+ENV PROTOC_VER 3.9.2
 
 # 
-RUN ln -fs /usr/share/zoneinfo/Etc/GMT /etc/localtime
+RUN ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime
 
 # Install dependency library
 RUN apt-get update && \
@@ -24,3 +24,4 @@ RUN git clone -b 0.9.1 --depth=1 https://github.com/grpc/grpc-swift && \
     cp protoc-gen-swiftgrpc /usr/bin && \
     cd ../ && rm -rf grpc-swift
 
+RUN swift --version
