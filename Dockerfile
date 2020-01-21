@@ -1,9 +1,6 @@
-FROM swift:5.1
+FROM norionomura/swift:swift-5.2-branch
 
-ENV PROTOC_VER 3.9.1
-
-# 
-RUN ln -fs /usr/share/zoneinfo/Etc/GMT /etc/localtime
+ENV PROTOC_VER 3.11.2
 
 # Install dependency library
 RUN apt-get update && \
@@ -17,10 +14,10 @@ RUN curl -s -O -L https://github.com/google/protobuf/releases/download/v${PROTOC
     rm protoc-${PROTOC_VER}-linux-x86_64.zip
 
 # Build and install the swiftgrpc plugin
-RUN git clone -b 1.0.0-alpha.6 --depth=1 https://github.com/grpc/grpc-swift && \
+RUN git clone -b 1.0.0-alpha.9 --depth=1 https://github.com/grpc/grpc-swift && \
     cd grpc-swift && \
     make plugins && \
-    cp ./.build/debug/protoc-gen-swift /usr/bin && \
-    cp ./.build/debug/protoc-gen-grpc-swift /usr/bin && \
+    cp ./.build/release/protoc-gen-swift /usr/bin && \
+    cp ./.build/release/protoc-gen-grpc-swift /usr/bin && \
     cd ../ && rm -rf grpc-swift && swift --version
 
