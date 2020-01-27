@@ -1,4 +1,4 @@
-FROM norionomura/swift:swift-5.2-branch
+FROM swiftlang/swift:nightly-5.2-bionic
 
 ENV PROTOC_VER 3.11.2
 
