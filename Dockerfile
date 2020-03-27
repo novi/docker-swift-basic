@@ -1,6 +1,6 @@
-FROM swift:5.1.4
+FROM swift:5.1.5
 
-ENV PROTOC_VER 3.11.3
+ENV PROTOC_VER 3.11.4
 
 # 
 RUN ln -fs /usr/share/zoneinfo/Etc/UTC /etc/localtime
