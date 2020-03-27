@@ -1,4 +1,4 @@
-FROM swiftlang/swift:nightly-5.2-bionic
+FROM swift:5.2
 
 ENV PROTOC_VER 3.11.2
 
