@@ -1,4 +1,4 @@
-FROM swift:5.2
+FROM swift:5.2.4
 
 ENV PROTOC_VER 3.12.1
 
