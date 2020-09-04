@@ -1,10 +1,10 @@
-FROM swift:5.2.5-bionic
+FROM swiftlang/swift:nightly-5.3-focal
 
 ENV PROTOC_VER 3.13.0
 
 # Install dependency library
 RUN apt-get update && \
-    apt-get install -y libxml2-dev libmysqlclient-dev unzip libnghttp2-dev curl libssl-dev libcurl4-openssl-dev && \
+    apt-get install -y libxml2-dev libmysqlclient-dev unzip libnghttp2-dev curl make libssl-dev libcurl4-openssl-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
