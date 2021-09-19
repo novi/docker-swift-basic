@@ -1,4 +1,4 @@
-FROM swift:5.4.1-bionic
+FROM swift:5.4.3-bionic
 
 ENV PROTOC_VER 3.13.0
 
