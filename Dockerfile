@@ -1,4 +1,4 @@
-FROM swiftlang/swift:nightly-5.5-bionic
+FROM swiftlang/swift:nightly-focal
 
 ENV PROTOC_VER 3.18.0
 
