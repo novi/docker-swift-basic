@@ -1,6 +1,7 @@
 FROM swiftlang/swift:nightly-focal
 
-ENV PROTOC_VER 3.18.0
+ARG PROTOC_VER=3.18.0
+ARG PROTOC_ARCH=x86_64
 
 # Install dependency library
 RUN apt-get update && \
@@ -9,9 +10,9 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Install protoc
-RUN curl -s -O -L https://github.com/google/protobuf/releases/download/v${PROTOC_VER}/protoc-${PROTOC_VER}-linux-x86_64.zip && \
-    unzip protoc-${PROTOC_VER}-linux-x86_64.zip -d /usr && \
-    rm protoc-${PROTOC_VER}-linux-x86_64.zip
+RUN curl -s -O -L https://github.com/google/protobuf/releases/download/v${PROTOC_VER}/protoc-${PROTOC_VER}-linux-${PROTOC_ARCH}.zip && \
+    unzip protoc-${PROTOC_VER}-linux-${PROTOC_ARCH}.zip -d /usr && \
+    rm protoc-${PROTOC_VER}-linux-${PROTOC_ARCH}.zip
 
 # Build and install the swiftgrpc plugin
 RUN git clone -b 1.4.1 --depth=1 https://github.com/grpc/grpc-swift && \
