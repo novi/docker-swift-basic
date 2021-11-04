@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  dockerbuild:
+  build_and_push_image:
     docker:
       - image: docker:dind
     parameters:
@@ -51,6 +51,6 @@ jobs:
 
 workflows:
   version: 2
-  dockerbuild_test:
+  build_and_push:
     jobs:
-      - dockerbuild
+      - build_and_push_image
