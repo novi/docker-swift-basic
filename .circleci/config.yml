@@ -5,16 +5,27 @@ jobs:
     docker:
       - image: docker:dind
     parameters:
+      docker-username:
+        type: env_var_name
+        default: DOCKER_LOGIN
+      docker-password:
+        type: env_var_name
+        default: DOCKER_PASSWORD
       qemu-user-static-version:
-          default: 5.2.0-2
-          type: string
+        default: 5.2.0-2
+        type: string
       version:
-          default: 0.5.1
-          description: buildx version
-          type: string
+        default: 0.5.1
+        description: buildx version
+        type: string
     steps:
       - setup_remote_docker:
           version: 20.10.2
+      - run:
+            name: Docker login
+            command: |
+              echo "$<<parameters.docker-password>>" \
+                | docker login -u "$<<parameters.docker-username>>" --password-stdin
       - checkout
       - run:
             name: Install Docker buildx
@@ -36,7 +47,7 @@ jobs:
               docker context create xbuilder
               docker buildx create xbuilder --name xbuilder --use
               docker buildx inspect --bootstrap
-      - run: docker buildx build --pull --platform linux/amd64,linux/arm64 -t yusukeito/swift-basic:${CIRCLE_BRANCH} .
+      - run: docker buildx build --pull --platform linux/amd64,linux/arm64 -t yusukeito/swift-basic:${CIRCLE_BRANCH} --push .
 
 workflows:
   version: 2
