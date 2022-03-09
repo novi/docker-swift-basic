@@ -1,6 +1,6 @@
-FROM swift:5.5.0-focal
+FROM swift:5.5.3-focal
 
-ENV PROTOC_VER 3.18.0
+ENV PROTOC_VER 3.19.4
 
 # Install dependency library
 RUN apt-get update && \
@@ -14,7 +14,7 @@ RUN curl -s -O -L https://github.com/google/protobuf/releases/download/v${PROTOC
     rm protoc-${PROTOC_VER}-linux-x86_64.zip
 
 # Build and install the swiftgrpc plugin
-RUN git clone -b 1.4.1 --depth=1 https://github.com/grpc/grpc-swift && \
+RUN git clone -b 1.7.1 --depth=1 https://github.com/grpc/grpc-swift && \
     cd grpc-swift && \
     make plugins && \
     cp ./.build/release/protoc-gen-swift /usr/bin && \
