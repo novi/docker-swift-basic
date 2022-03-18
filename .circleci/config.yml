@@ -17,7 +17,7 @@ jobs:
         type: string
     steps:
       - setup_remote_docker:
-          version: 20.10.2
+          version: 20.10.11
       - run:
             name: Docker login
             command: |
