@@ -1,4 +1,4 @@
-FROM swift:5.7.0-focal AS base
+FROM swift:5.7.1-focal AS base
 ARG PROTOC_VER=3.20.3
 ARG GRPC_SWIFT_VER=1.11.0
 
@@ -12,7 +12,7 @@ FROM base-$TARGETARCH AS final
 
 # Install dependency library
 RUN apt-get update && \
-    apt-get install -y libxml2-dev libmysqlclient-dev unzip libnghttp2-dev curl make libssl-dev libcurl4-openssl-dev && \
+    apt-get install -y libxml2-dev libmariadbclient-dev unzip curl make libcurl4-nss-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
