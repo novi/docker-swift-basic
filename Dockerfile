@@ -12,7 +12,7 @@ FROM base-$TARGETARCH AS final
 
 # Install dependency library
 RUN apt-get update && \
-    apt-get install -y libxml2-dev libmariadbclient-dev unzip curl make libcurl4-nss-dev && \
+    apt-get install -y libxml2-dev libmysqlclient-dev unzip curl make libcurl4-nss-dev && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
