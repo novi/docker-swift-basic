@@ -1,6 +1,6 @@
-FROM swift:5.7.1-focal AS base
+FROM swift:5.7.2-focal AS base
 ARG PROTOC_VER=3.20.3
-ARG GRPC_SWIFT_VER=1.13.0
+ARG GRPC_SWIFT_VER=1.13.1
 
 FROM base AS base-amd64
 ARG PROTOC_ARCH=x86_64
