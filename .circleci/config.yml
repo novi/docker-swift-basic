@@ -12,12 +12,11 @@ jobs:
         type: env_var_name
         default: DOCKER_PASSWORD
       version:
-        default: 0.9.1
+        default: 0.10.0
         description: buildx version
         type: string
     steps:
-      - setup_remote_docker:
-          version: 20.10.18
+      - setup_remote_docker
       - run:
             name: Docker login
             command: |
