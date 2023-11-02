@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   build_and_push_image:
     docker:
-      - image: docker:dind
+      - image: cimg/base:stable
     parameters:
       docker-username:
         type: env_var_name
@@ -11,39 +11,16 @@ jobs:
       docker-password:
         type: env_var_name
         default: DOCKER_PASSWORD
-      version:
-        default: 0.10.0
-        description: buildx version
-        type: string
     steps:
-      - setup_remote_docker
+      - setup_remote_docker:
+          version: 20.10.23
       - run:
             name: Docker login
             command: |
               echo "$<<parameters.docker-password>>" \
                 | docker login -u "$<<parameters.docker-username>>" --password-stdin
       - checkout
-      - run:
-            name: Install Docker buildx
-            command: |
-              apk add curl
-              mkdir -p ~/.docker/cli-plugins
-              baseUrl="https://github.com/docker/buildx/releases/download"
-              fileName="buildx-v<< parameters.version >>.linux-amd64"
-              url="${baseUrl}/v<< parameters.version >>/${fileName}"
-              curl -sSL -o ~/.docker/cli-plugins/docker-buildx $url
-              chmod a+x ~/.docker/cli-plugins/docker-buildx
-      - run:
-            name: Prepare docker buildx
-            command: |
-              docker buildx install
-              docker version
-              docker buildx version
-              docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
-              docker context create xbuilder
-              docker buildx create xbuilder --name xbuilder --use
-              docker buildx inspect --bootstrap
-      - run: docker buildx build --pull --platform linux/amd64,linux/arm64 -t yusukeito/swift-basic:${CIRCLE_BRANCH} --push .
+      - run: docker buildx create --use && docker buildx build --pull --platform linux/amd64,linux/arm64 -t yusukeito/swift-basic:${CIRCLE_BRANCH} --push .
 
 workflows:
   version: 2
