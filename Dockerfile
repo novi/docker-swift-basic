@@ -1,6 +1,6 @@
-FROM swift:5.9.1-focal AS base
-ARG PROTOC_VER=24.4
-ARG GRPC_SWIFT_VER=1.20.0
+FROM swift:5.10.1-focal AS base
+ARG PROTOC_VER=28.0
+ARG GRPC_SWIFT_VER=1.23.0
 
 FROM base AS base-amd64
 ARG PROTOC_ARCH=x86_64
@@ -24,7 +24,8 @@ RUN curl -s -O -L https://github.com/google/protobuf/releases/download/v${PROTOC
 # Build and install the swiftgrpc plugin
 RUN git clone -b ${GRPC_SWIFT_VER} --depth=1 https://github.com/grpc/grpc-swift && \
     cd grpc-swift && \
-    make plugins && \
+    swift build -c release --product protoc-gen-swift && \
+    swift build -c release --product protoc-gen-grpc-swift && \
     cp ./.build/release/protoc-gen-swift /usr/bin && \
     cp ./.build/release/protoc-gen-grpc-swift /usr/bin && \
     cd ../ && rm -rf grpc-swift && swift --version
